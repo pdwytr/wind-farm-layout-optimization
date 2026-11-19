@@ -73,6 +73,10 @@ from shapely.geometry import Point             # Imported for constraint checkin
 from shapely.geometry.polygon import Polygon
 
 import warnings
+from pathlib import Path
+
+# Data location resolved from this file, independent of the working directory
+DATA_DIR = Path(__file__).resolve().parent.parent / 'data' / 'shell_hackathon'
 warnings.filterwarnings("ignore")
 
 def getTurblocation(turb_loc_list):
@@ -479,11 +483,11 @@ def get_AEP(LAYOUT):
     turb_coords   =  getTurblocation(LAYOUT)
     
     # Load the power curve
-    power_curve   =  loadPowerCurve('Shell_Hackathon_Dataset/power_curve.csv')
+    power_curve   =  loadPowerCurve(str(DATA_DIR / 'power_curve.csv'))
     
     # Pass wind data csv file location to function binWindResourceData.
     # Retrieve probabilities of wind instance occurence.
-    wind_inst_freq =  binWindResourceData('Shell_Hackathon_Dataset/Wind Data/wind_data_2007.csv')   
+    wind_inst_freq =  binWindResourceData(str(DATA_DIR / 'wind_data' / 'wind_data_2007.csv'))   
     
     # Doing preprocessing to avoid the same repeating calculations. Record 
     # the required data for calculations. Do that once. Data are set up (shaped)

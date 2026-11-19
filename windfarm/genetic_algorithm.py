@@ -12,13 +12,13 @@ import random
 # In[2]:
 
 
-from AEP_calculator import get_AEP,checkConstraints
+from windfarm.aep_calculator import get_AEP,checkConstraints
 
 
 # In[3]:
 
 
-from chromosome import fn_chromosome,fn_plot,fn_generate_initial_population
+from windfarm.chromosome import fn_chromosome,fn_plot,fn_generate_initial_population
 
 
 # # Genetic Algorithm for Turbine Points Layout
@@ -207,9 +207,9 @@ def fn_evolution(elite_population_layouts,
 
 def intitiate():
 
-    layout1 = pd.read_csv("layouts/s1.csv")
-    layout2 = pd.read_csv("layouts/s2.csv")
-    layout3 = pd.read_csv("layouts/s3.csv")
+    layout1 = pd.read_csv("layouts/seed/seed_1.csv")
+    layout2 = pd.read_csv("layouts/seed/seed_2.csv")
+    layout3 = pd.read_csv("layouts/seed/seed_3.csv")
     layout4 = fn_chromosome()
 
     return [layout1,layout2,layout3,layout4]
@@ -265,7 +265,7 @@ if __name__ == "__main__":
     k = fn_main()
 
     # # Submission
-    k.to_csv("submission.csv",index=False)
+    k.to_csv("layouts/submissions/submission.csv",index=False)
 
     fn_plot(k)
 

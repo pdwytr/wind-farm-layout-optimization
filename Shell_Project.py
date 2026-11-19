@@ -218,7 +218,7 @@ def intitiate():
 # In[15]:
 
 
-if __name__=="__main__":
+def fn_main():
     list_layout = fn_generate_initial_population(4)
     
     new_population = list_layout.copy()
@@ -246,7 +246,7 @@ if __name__=="__main__":
 
     AEP_df = pd.DataFrame(columns = ['AEP'])
     for k in range (len(new_population)):
-        AEP_df.loc[len(AEP_df),'AEP'] = fn_fitness_function(new_population[k])
+        AEP_df.loc[len(AEP_df),'AEP'] = get_AEP(new_population[k])
      
     elite = AEP_df['AEP'].sort_values(ascending = False).to_frame()[0:1]
     print(elite)
@@ -255,36 +255,18 @@ if __name__=="__main__":
     
 
     print(new_population)
+    return new_population
 
 
 # In[11]:
 
 
-k = fn_main()
+if __name__ == "__main__":
+    k = fn_main()
 
+    # # Submission
+    k.to_csv("submission.csv",index=False)
 
-# In[ ]:
-
-
-fn_plot(a)
-
-
-# In[ ]:
-
-
-a = pd.read_csv('submissionk4.csv')
-
-
-# # Submission
-
-# In[ ]:
-
-
-k.to_csv("submission.csv",index=False)
-
-
-# In[ ]:
-
-
+    fn_plot(k)
 
 
